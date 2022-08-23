@@ -4,10 +4,6 @@ import { clientRoutes } from "./clientRoutes";
 
 const routes = express.Router();
 
-routes.get("/ola",(req:Request,res:Response,next)=>{
-    
-    res.json({"nome":"Pedro"})
-})
-routes.use(clientRoutes);
+routes.use("/client",clientRoutes);
 
 export {routes}
