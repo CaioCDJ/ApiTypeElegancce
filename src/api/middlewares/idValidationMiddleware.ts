@@ -1,19 +1,21 @@
 import yup from 'yup';
+import idSchema from '../validations/idValidation.ts';
 import {Response,Request,NextFunction} from 'express';
 
-const bodyValidation = (schema:yup.AnyObjectSchema) =>
+const idValidation = 
   async (req:Request,res:Response,next:NextFunction) =>{
-  try{
-  
-    const body = req.body;
 
-    await schema.validate(body);
+  try{
+    
+    const id = parseInt(req.params.id);
+
+    await  idSchema.validate(id);
 
     next();
 
-  } catch(e){
-      
-    res.send(e.message);
-  }
+  }catch(e){
 
+  }
 }
+
+export default idValidation;
