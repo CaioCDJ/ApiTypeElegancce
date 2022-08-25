@@ -1,4 +1,3 @@
-import {byId} from './searchClient';
+import findAll from './findAll';
 
-
-export {byId}
+export {findAll};

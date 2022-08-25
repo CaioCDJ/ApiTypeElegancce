@@ -6,9 +6,13 @@ import apiErrorHandler from './errorHandler';
 import { gemToken, verifyToken } from "../../config/token";
 import { permissionsLevel } from "../entities/enum/permisionEmun";
 import { PrismaClient } from "@prisma/client";
-import { number } from "yup";
 
-const routes = express.Router();
+
+BigInt.prototype.toJSON = function() {       
+    return this.toString()
+}
+
+  const routes = express.Router();
 
 routes.use("/client",clientRoutes);
 routes.use("/admins",adminRoutes);
@@ -30,13 +34,12 @@ routes.get("/a", async(req:Request,res:Response)=>{
 
     try{
 
-        const caio = await p.reservations.findMany()
+        const caio = await p.users.findMany()
 
-        res.send(caio)
-
+        res.json(caio)
     
     }catch(e){
-        console.log("erro")
+        console.log(e)
         res.send(e.message)
     }
 })

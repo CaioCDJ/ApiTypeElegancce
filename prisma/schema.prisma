@@ -8,33 +8,33 @@ datasource db {
 }
 
 model addresses {
-  id         Int        @id @default(autoincrement())
+  id         BigInt        @id @default(autoincrement())
   cep        Int?
   address    String?    @db.VarChar
   district   String?    @db.VarChar
   city       String?    @db.VarChar
   complement String?    @db.VarChar
-  user_id    Int?
+  user_id    BigInt?
   users      users?     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_addresses")
   requests   requests[]
 }
 
 model adms {
-  id       Int     @id @default(autoincrement())
+  id       BigInt     @id @default(autoincrement())
   email    String? @db.VarChar(45)
   name     String? @db.VarChar(45)
   password String? @db.VarChar(255)
 }
 
 model buys {
-  id         Int       @id @default(autoincrement())
+  id         BigInt       @id @default(autoincrement())
   value      Float?
-  request_id Int?
+  request_id BigInt?
   requests   requests? @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_request_id")
 }
 
 model discounts {
-  id         Int        @id @default(autoincrement())
+  id         BigInt        @id @default(autoincrement())
   code       String?    @db.VarChar(10)
   discount   Int?
   dt_limit   DateTime?  @db.Timestamp(6)
@@ -42,7 +42,7 @@ model discounts {
 }
 
 model procedures {
-  id                     Int                      @id @default(autoincrement())
+  id                     BigInt                      @id @default(autoincrement())
   name                   String?                  @db.VarChar(50)
   value                  Float?
   categorie              String?                  @db.VarChar(50)
@@ -50,7 +50,7 @@ model procedures {
 }
 
 model products {
-  id               Int                @id @default(autoincrement())
+  id               BigInt                @id @default(autoincrement())
   name             String?            @db.VarChar(45)
   value            Float?
   description      String?
@@ -62,20 +62,20 @@ model products {
 }
 
 model request_products {
-  id         Int       @id @default(autoincrement())
+  id         BigInt       @id @default(autoincrement())
   qt_product Int?
-  product_id Int?
-  request_id Int?
+  product_id BigInt?
+  request_id BigInt?
   products   products? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_product_id")
   requests   requests? @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_request_id")
 }
 
 model requests {
-  id               Int                @id @default(autoincrement())
-  user_id          Int?
+  id               BigInt                @id @default(autoincrement())
+  user_id          BigInt?
   date             DateTime?          @db.Timestamp(6)
   status           String?            @db.VarChar
-  address_id       Int?
+  address_id       BigInt?
   addresses        addresses?         @relation(fields: [address_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_request_address")
   users            users?             @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_id")
   buys             buys[]
@@ -83,32 +83,32 @@ model requests {
 }
 
 model reservation_procedures {
-  id             Int           @id @default(autoincrement())
-  procedure_id   Int?
-  reservation_id Int?
+  id             BigInt           @id @default(autoincrement())
+  procedure_id   BigInt?
+  reservation_id BigInt?
   procedures     procedures?   @relation(fields: [procedure_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_procedure")
   reservations   reservations? @relation(fields: [reservation_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_reservation")
 }
 
 model reservations {
-  id                     Int                      @id @default(autoincrement())
+  id                     BigInt                      @id @default(autoincrement())
   date                   DateTime?                @db.Timestamp(6)
-  user_id                Int?
+  user_id                BigInt?
   users                  users?                   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
   reservation_procedures reservation_procedures[]
 }
 
 model reviews {
-  id         Int       @id @default(autoincrement())
+  id         BigInt       @id @default(autoincrement())
   stars      Int?
-  user_id    Int?
-  product_id Int?
+  user_id    BigInt?
+  product_id BigInt?
   products   products? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_review_product")
   users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_review_user")
 }
 
 model users {
-  id           Int            @id @default(autoincrement())
+  id           BigInt            @id @default(autoincrement())
   name         String?        @db.VarChar(50)
   email        String?        @db.VarChar(50)
   password     String?        @db.VarChar(255)

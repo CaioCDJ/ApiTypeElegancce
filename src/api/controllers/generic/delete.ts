@@ -1,15 +1,24 @@
-import {Request,Response} from 'express';
+import {Request,Response} from 'express'
+import prisma from '../../services/prisma';
 
-const remove = (tbName:string) => async (req:Request,res:Response)  =>{
+const remove = (tbName:string) =>
+   async (req:Request,res:Response)  =>{
 
   try{
+
     const id:number = parseInt(req.params.id);
 
-    const results = await genericDbFunc.remove(id);
+    await prisma[tbName].delete({
+      where:{
+        id
+      }
+    });
 
     res.send("ok");
   }
-  catch(e){}
+  catch(e){
+      res.send(e)
+  }
 }
 
 export default remove;
