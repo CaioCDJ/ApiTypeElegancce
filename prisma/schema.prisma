@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model addresses {
+  id         Int        @id @default(autoincrement())
+  cep        Int?
+  address    String?    @db.VarChar
+  district   String?    @db.VarChar
+  city       String?    @db.VarChar
+  complement String?    @db.VarChar
+  user_id    Int?
+  users      users?     @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_addresses")
+  requests   requests[]
+}
+
+model adms {
+  id       Int     @id @default(autoincrement())
+  email    String? @db.VarChar(45)
+  name     String? @db.VarChar(45)
+  password String? @db.VarChar(255)
+}
+
+model buys {
+  id         Int       @id @default(autoincrement())
+  value      Float?
+  request_id Int?
+  requests   requests? @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_request_id")
+}
+
+model discounts {
+  id         Int        @id @default(autoincrement())
+  code       String?    @db.VarChar(10)
+  discount   Int?
+  dt_limit   DateTime?  @db.Timestamp(6)
+  created_at DateTime[] @db.Timestamp
+}
+
+model procedures {
+  id                     Int                      @id @default(autoincrement())
+  name                   String?                  @db.VarChar(50)
+  value                  Float?
+  categorie              String?                  @db.VarChar(50)
+  reservation_procedures reservation_procedures[]
+}
+
+model products {
+  id               Int                @id @default(autoincrement())
+  name             String?            @db.VarChar(45)
+  value            Float?
+  description      String?
+  qt               Int?
+  brand            String?            @db.VarChar
+  url_img          String?            @db.VarChar
+  request_products request_products[]
+  reviews          reviews[]
+}
+
+model request_products {
+  id         Int       @id @default(autoincrement())
+  qt_product Int?
+  product_id Int?
+  request_id Int?
+  products   products? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_product_id")
+  requests   requests? @relation(fields: [request_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_request_id")
+}
+
+model requests {
+  id               Int                @id @default(autoincrement())
+  user_id          Int?
+  date             DateTime?          @db.Timestamp(6)
+  status           String?            @db.VarChar
+  address_id       Int?
+  addresses        addresses?         @relation(fields: [address_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_request_address")
+  users            users?             @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_id")
+  buys             buys[]
+  request_products request_products[]
+}
+
+model reservation_procedures {
+  id             Int           @id @default(autoincrement())
+  procedure_id   Int?
+  reservation_id Int?
+  procedures     procedures?   @relation(fields: [procedure_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_procedure")
+  reservations   reservations? @relation(fields: [reservation_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_reservation")
+}
+
+model reservations {
+  id                     Int                      @id @default(autoincrement())
+  date                   DateTime?                @db.Timestamp(6)
+  user_id                Int?
+  users                  users?                   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_user")
+  reservation_procedures reservation_procedures[]
+}
+
+model reviews {
+  id         Int       @id @default(autoincrement())
+  stars      Int?
+  user_id    Int?
+  product_id Int?
+  products   products? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_review_product")
+  users      users?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_review_user")
+}
+
+model users {
+  id           Int            @id @default(autoincrement())
+  name         String?        @db.VarChar(50)
+  email        String?        @db.VarChar(50)
+  password     String?        @db.VarChar(255)
+  phone        Int?
+  cpf          BigInt?
+  sexo         String?        @db.VarChar(30)
+  img_url      String?        @db.VarChar
+  birth        DateTime?      @db.Date
+  addresses    addresses[]
+  requests     requests[]
+  reservations reservations[]
+  reviews      reviews[]
+}

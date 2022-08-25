@@ -1,10 +1,9 @@
 import express from 'express';
 import { Request,Response } from 'express';
-import * as clientUseCases from '../controllers/client/index';
 import * as genericFuncs from '../controllers/generic/index'; 
 import { Client } from '../entities/client';
 import bodyValidation from '../middlewares/bodyValidationMiddleware';
-import {schema} from '../validations/clientSchema';
+import {clientSchema} from '../validations/clientSchema';
 
 const clientRoutes = express.Router();
 
@@ -12,7 +11,7 @@ clientRoutes.get("/", genericFuncs.findAll('users'));
 clientRoutes.get("/:id", genericFuncs.findById('users'));
 
 // rota test
-clientRoutes.post('/a',bodyValidation(schema),  async(req:Request,res:Response)=>{
+clientRoutes.post('/a',bodyValidation(clientSchema),  async(req:Request,res:Response)=>{
 
 
 

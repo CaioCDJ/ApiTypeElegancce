@@ -1,4 +1,3 @@
-import genericDbFunc from "../../repositories/genericDbFunc";
 import {Request,Response} from 'express';
 
 const byId = async (req:Request,res:Response) => {

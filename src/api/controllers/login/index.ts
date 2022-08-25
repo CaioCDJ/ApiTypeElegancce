@@ -1,4 +1,3 @@
-import genericDbFunc from "../../repositories/genericDbFunc";
 import {Request,Response} from 'express';
 import {Login} from '../../entities/loginInterface';
 
