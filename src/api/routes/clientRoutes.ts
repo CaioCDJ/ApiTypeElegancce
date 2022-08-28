@@ -1,14 +1,14 @@
 import express from 'express';
 import { Request,Response } from 'express';
-import * as genericFuncs from '../controllers/generic/index'; 
+import * as genericFuncs from '../useCases/generic/index'; 
 import bodyValidation from '../middlewares/bodyValidationMiddleware';
 import {clientSchema} from '../validations/clientSchema';
-import * as clientController from '../controllers/client/index';
+import * as clientController from '../useCases/client/index';
 
 const clientRoutes = express.Router();
 
 
-clientRoutes.get("/", clientController.findAll);
+clientRoutes.get("/", genericFuncs.findAll("users"));
 clientRoutes.get("/:id", genericFuncs.findById('users'));
 
 // rota test

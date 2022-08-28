@@ -2,6 +2,7 @@ import express from "express";
 import { Request,Response } from "express";
 import { clientRoutes } from "./clientRoutes";
 import { adminRoutes } from './adminsRoutes';
+import productRoutes from './producRoutes';
 import apiErrorHandler from './errorHandler';
 import { gemToken, verifyToken } from "../../config/token";
 import { permissionsLevel } from "../entities/enum/permisionEmun";
@@ -16,6 +17,7 @@ BigInt.prototype.toJSON = function() {
 
 routes.use("/client",clientRoutes);
 routes.use("/admins",adminRoutes);
+routes.use("/products",productRoutes)
 
 // --- rota test --
 routes.get('/token',async(req:Request,res:Response)=>{
@@ -27,22 +29,6 @@ routes.get('/token',async(req:Request,res:Response)=>{
     res.send(ola);
 })
 
-// -- prisma tests --
-routes.get("/a", async(req:Request,res:Response)=>{
-
-    const p = new PrismaClient();
-
-    try{
-
-        const caio = await p.users.findMany()
-
-        res.json(caio)
-    
-    }catch(e){
-        console.log(e)
-        res.send(e.message)
-    }
-})
 
 routes.use(apiErrorHandler);
 

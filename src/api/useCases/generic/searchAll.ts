@@ -6,15 +6,22 @@ const findAll = (tbName:string) =>
   async (req:Request,res:Response)  =>{
 
     try{
-  
       const query = `FROM ${tbName}`;
 
-      const all = await prisma.$queryRawUnsafe(`SELECT * ${query} ORDER BY id`);
-     
+      // ordem cresente
+      const all = await prisma[tbName].findMany(
+      {
+        orderBy:{
+          id:'asc'
+        }
+      });
+    
       res.send(all);
 
     } 
-    catch(e){
+    catch(e:any){
+      console.log(e);
+      
       res.status(500).send(e.message)
     } 
 }

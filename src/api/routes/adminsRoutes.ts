@@ -1,6 +1,6 @@
 import express from 'express';
-import * as adminController from '../controllers/client/index';
-import * as genericFuncs from '../controllers/generic/index'; 
+import * as adminController from '../useCases/client/index';
+import * as genericFuncs from '../useCases/generic/index'; 
 
 const adminRoutes = express.Router();
 
