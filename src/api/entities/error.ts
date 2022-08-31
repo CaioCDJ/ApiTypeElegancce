@@ -1,30 +1,37 @@
 
-export class Error {
+export class Results {
 
   constructor(code:number,msg:string){
 
     this.message = msg;
     this.code = code;
   }
-
-
-  static badRequest(msg){
+  
+  // -- approved Message --
+  static ok(){
     
-    return new Error(400,msg);
+    return new Results(200,"");
+  }
+  
+  // -- Error Message --
+  static badRequest(msg:string){
+    
+    return new Results(400,msg);
   }
 
-  static notFound(msg){
+  static notFound(msg:string){
 
-    return new Error(404,msg);
+    return new Results(404,msg);
   }
 
-  static forbidden(msg){
+  static forbidden(msg:string){
 
-    return new Error(403,msg);
+    return new Results(403,msg);
   }
 
-  static notAcceptable(msg){
+  static Results(msg:string){
 
     return new Error(406,msg);
   }
+
 }

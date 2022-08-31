@@ -1,6 +1,5 @@
 import express from "express";
 import { routes } from "../api/routes/index";
-
 const server = express();
 
 server.use(express.json())
