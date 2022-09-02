@@ -1,11 +1,10 @@
-import {Client} from  '../../entities/client.ts';
-import {Request,Response} from 'express';
-import { Prisma } from '@prisma/client';
+import { Client } from  '../../entities/client.ts';
+import { Request,Response, NextFunction } from 'express';
 import prisma from '../../services/prisma';
+import { Error } from '../../entities/error';
 
-
-
-const create = async (req,res) =>{
+const create = 
+  async (req:Request,res:Response,next:NextFunction) =>{
 
   try{
 
@@ -33,7 +32,7 @@ const create = async (req,res) =>{
       }
     });
     
-    res.send();
+    res.json({"message":"Usuario criado"});
 
   } catch(e:any){
     res.send(e.message)

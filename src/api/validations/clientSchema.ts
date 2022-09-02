@@ -1,7 +1,6 @@
 import yup, { date, number, object, SchemaOf, string } from 'yup';
 import {Client} from '../entities/client';
 
-
 export const clientSchema:SchemaOf<Client> = object({
   
   name: string().required(),

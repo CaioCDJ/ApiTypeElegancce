@@ -6,8 +6,8 @@ const findAll = (tbName:string) =>
   async (req:Request,res:Response)  =>{
 
     try{
-      const query = `FROM ${tbName}`;
-
+      console.log(tbName)
+    
       // ordem cresente
       const all = await prisma[tbName].findMany(
       {
@@ -20,7 +20,6 @@ const findAll = (tbName:string) =>
 
     } 
     catch(e:any){
-      console.log(e);
       
       res.status(500).send(e.message)
     } 

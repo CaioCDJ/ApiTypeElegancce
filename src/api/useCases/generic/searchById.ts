@@ -8,8 +8,6 @@ const findById = (tbName:string) =>
   try{
   
     const id = parseInt(req.params.id);
-  
-    const query = `FROM ${tbName}`;
 
     const results = await prisma[tbName].findUnique({
       where:{

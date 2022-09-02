@@ -1,5 +1,4 @@
 import {Request,Response} from 'express';
-import { Prisma } from '@prisma/client';
 import prisma from '../../services/prisma';
 
 const getPages = async(req:Request,res:Response) => {

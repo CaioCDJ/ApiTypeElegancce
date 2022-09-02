@@ -1,6 +1,6 @@
 import {Request,Response} from 'express';
-import { Prisma } from '@prisma/client';
 import prisma from '../../services/prisma';
+import { Error } from '../../entities/error';
 
 const searchAll = async(req:Request,res:Response) => {
   

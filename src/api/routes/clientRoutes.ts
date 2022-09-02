@@ -1,14 +1,14 @@
 import { Router } from 'express';
-import * as genericFuncs from '../useCases/generic/index'; 
-import bodyValidation from '../middlewares/bodyValidationMiddleware';
-import {clientSchema} from '../validations/clientSchema';
-import * as clientController from '../useCases/client/index';
+import * as clientUseCases from '../useCases/client/index';
+import * as genericFuncs from '../useCases/generic/index';
 
+const clientRouter = Router();
 
-export default (router:Router):void =>{
+clientRouter.get("/",genericFuncs.findAll("users"));
+clientRouter.get("/:id",genericFuncs.findById("users"));
 
-  router.get("/", genericFuncs.findAll("users"));
-  router.get("/:id", genericFuncs.findById('users'));
-  router.delete("/:id", genericFuncs.remove('users'));
-  // updates
-}
+clientRouter.get("/:id/requests",clientUseCases.clientRequest);
+clientRouter.get("/:id/reservations",clientUseCases.clientReservation)
+clientRouter.get("/:id/reviews",clientUseCases.clientReview)
+
+export default clientRouter;

@@ -1,3 +1,6 @@
-import findAll from './findAll';
+import clientRequest from './clientRequests';
+import clientReservation from './clientReservation';
+import clientReview from './clientReview';
+import create from './create';
 
-export {findAll};
+export { create,clientReview,clientReservation,clientRequest };

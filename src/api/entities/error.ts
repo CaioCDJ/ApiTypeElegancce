@@ -1,16 +1,10 @@
 
-export class Results {
+export class Error {
 
   constructor(code:number,msg:string){
 
     this.message = msg;
     this.code = code;
-  }
-  
-  // -- approved Message --
-  static ok(){
-    
-    return new Results(200,"");
   }
   
   // -- Error Message --

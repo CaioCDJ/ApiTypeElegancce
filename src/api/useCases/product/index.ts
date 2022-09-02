@@ -1,4 +1,4 @@
 import getPages from './pages';
+import searchProduct from './pages';
 
-
-export {getPages}
+export { getPages,searchProduct }
