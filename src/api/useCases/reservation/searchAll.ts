@@ -1,46 +1,21 @@
 import {Request,Response} from 'express';
-import { Prisma } from '@prisma/client';
 import prisma from '../../services/prisma';
+import searchAllRepo from './repositories/searchAllRepo';
+import { Error } from '../../entities/error';
 
 const searchAll = async(req:Request,res:Response) => {
   
   try{
 
-    const list = await prisma.reservations.findMany({
-      select:{
-        id:true,
-        date:true,
-        _count:false,
-        reservation_procedures:{
-          select:{
-            id:false,
-            reservations:false,
-            procedures:true,
-            procedure_id:false
-          }
-        },
-        users:{
-          select:{
-            id:true,
-            name:true,
-            sexo:true,
-            email:true,
-            cpf:false,
-            addresses:false,
-            reviews:false,
-            phone:false,
-            img_url:true,
-            birth:false,
-            password:false
-          }
-        },
-      }
-    });
+    const list = await searchAllRepo();
+    
+    if(Object.keys(list).length == 0) next( Error.notFound("Nenhuma reserva encontrada."))
+
 
     res.send(list);
     
   }catch(e:any){
-    res.send(e.message)
+    next(Error.badRequest(e.message));
   }
 }
 

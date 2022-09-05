@@ -35,7 +35,7 @@ const create =
     res.json({"message":"Usuario criado"});
 
   } catch(e:any){
-    res.send(e.message)
+    res.send(Error.badRequeste.message);
   }
 }
 

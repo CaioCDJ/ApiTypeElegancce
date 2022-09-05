@@ -1,51 +1,23 @@
-import {Request,Response} from 'express';
-import prisma from '../../services/prisma';
+import { Request,Response, NextFunction } from 'express';
+import { Error } from '../../entities/error';
+import searchByIdReepo from './repositories/searchByIdRepo';
 
-const searchById = async(req:Request,res:Response) => {
+const searchById = 
+  async(req:Request,res:Response,next:NextFunction) => {
   
   try{
 
     const idParam = parseInt(req.params,id);
+  
+    const list = await searchById(idParam);
 
-    const list = await prisma.reservations.findMany({
-      
-      where:{
-        id:idParam
-      },
-      select:{
-        id:true,
-        date:true,
-        _count:false,
-        reservation_procedures:{
-          select:{
-            id:false,
-            reservations:false,
-            procedures:true,
-            procedure_id:false
-          }
-        },
-        users:{
-          select:{
-            id:true,
-            name:true,
-            sexo:true,
-            email:true,
-            cpf:false,
-            addresses:false,
-            reviews:false,
-            phone:false,
-            img_url:true,
-            birth:false,
-            password:false
-          }
-        },
-      }
-    });
+    if(Object.keys(list).length == 0) next( Error.notFound("Nenhuma reserva encontrada."))
+    
 
     res.send(list);
     
   }catch(e:any){
-    res.send(e.message)
+    next(Error.badRequest(e.message))
   }
 }
 

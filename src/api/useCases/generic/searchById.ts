@@ -1,5 +1,4 @@
 import {Request,Response} from 'express';
-import {Prisma, PrismaClient} from '@prisma/client';
 import prisma from '../../services/prisma';
 
 const findById = (tbName:string) => 

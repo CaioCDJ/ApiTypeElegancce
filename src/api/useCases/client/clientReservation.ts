@@ -1,6 +1,6 @@
 import {Request,Response,NextFunction} from 'express';
-import prisma from '../../services/prisma';
 import { Error } from '../../entities/error';
+import reservationRepo from './repositories/reservationRepo';
 
 const searchAll = 
   async(req:Request,res:Response,next:NextFunction) => {
@@ -8,20 +8,10 @@ const searchAll =
   try{
 
     const user_id = parseInt(req.params.id);
-    
-    const list = await prisma.reservations.findMany({
-      select:{
-        id:true,
-        users:true,
-        date:true,
-        user_id:true,
-        reservation_procedures:true,
-        _count:true
-      },
-      where:{
-        user_id
-      }
-    });
+   
+    const list = await reservationRepo(user_id);
+
+    if(Object.key(list).length == 0 ) next(Error.notFound("Nenhum Resultado encontrado"));
  
     res.send(list);
     

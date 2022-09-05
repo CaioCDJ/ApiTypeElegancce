@@ -8,13 +8,11 @@ const bodyValidation = (schema:yup.AnyObjectSchema) =>
 
     const body = req.body;
 
-    console.log(body)
-
     await schema.validate(body);
 
     next();
 
-  } catch(e){
+  } catch(e:any){
     res.send(e.message);
   }
 
