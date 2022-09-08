@@ -1,6 +1,6 @@
 import { Request,Response, NextFunction } from 'express';
 import { Error } from '../../entities/error';
-import prisma from '../../services/prisma';
+import { searchProductRepo } from './repositories/searchProductRepo';
 
 const searchProduct = 
   async(req:Request,res:Response,next:NextFunction) => {
@@ -9,32 +9,13 @@ const searchProduct =
 
     const searchParam = req.params.searchParam;
 
-    const results = await prisma.products.findMany({
-      where:{
-        name:{
+    const list  = searchProductRepo(searchParam);
 
-          startsWith:searchParam
-        },
-        OR:{
-          description:{
-
-            contains: searchParam
-          },
-          OR:{
-            name:{
-
-              endsWith:searchParam
-            }
-          }
-        },
-      }
-    });
-
-    if(results == null){
+    if(list == null){
       next(new Error(404,"Nenhum resultado encontrado"));
     }
     
-    res.send(results);
+    res.send(list);
 
   }catch(e:any){
 

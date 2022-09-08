@@ -1,5 +1,5 @@
 import {Request,Response,NextFunction} from 'express';
-import prisma from '../../services/prisma';
+ import reviewsRepo from './repositories/reviewsRepo'; 
 import { Error } from '../../entities/error';
 
 const clientRequest = 
@@ -9,12 +9,6 @@ const clientRequest =
 
     const user_id = parseInt(req.params.id);
     
-    const reviews = await prisma.reviews.findMany({
-      where:{
-        user_id
-      }
-    });
-
     res.send(reviews);
     
   }catch(e){

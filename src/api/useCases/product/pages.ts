@@ -16,12 +16,7 @@ const getPages = async(req:Request,res:Response) => {
     else{
      res.send("error")
     }
-
-    const list = await prisma.products.findMany(
-    {
-        take:10,
-        skip:pages
-      });
+  
 
     res.send(list);
 

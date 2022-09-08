@@ -8,7 +8,6 @@ const login = (req:Request,res:Response) =>{
     const body:Login = req.body;
   
 
-
   }catch(e){
 
     
