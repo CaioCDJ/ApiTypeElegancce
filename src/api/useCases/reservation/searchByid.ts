@@ -6,13 +6,12 @@ const searchById =
   async(req:Request,res:Response,next:NextFunction) => {
   
   try{
-
+  
     const idParam = parseInt(req.params,id);
   
     const list = await searchById(idParam);
 
-    if(Object.keys(list).length == 0) next( Error.notFound("Nenhuma reserva encontrada."))
-    
+    if(Object.keys(list).length == 0) next( Error.notFound("Nenhuma reserva encontrada."))  
 
     res.send(list);
     

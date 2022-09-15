@@ -1,6 +1,6 @@
 import prisma from '../../../services/prisma';
 
-export default async function searchByidRepo(id:number) =>{
+export default async function searchByidRepo(id:number){
 
   const list = await prisma.reservations.findMany({
       

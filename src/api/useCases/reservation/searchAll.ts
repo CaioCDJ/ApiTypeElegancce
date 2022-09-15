@@ -1,9 +1,9 @@
-import {Request,Response} from 'express';
+import {NextFunction, Request,Response} from 'express';
 import prisma from '../../services/prisma';
 import searchAllRepo from './repositories/searchAllRepo';
 import { Error } from '../../entities/error';
 
-const searchAll = async(req:Request,res:Response) => {
+const searchAll = async(req:Request,res:Response,next:NextFunction) => {
   
   try{
 

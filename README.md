@@ -2,28 +2,23 @@
 
 <img src="./logo.png">
 
-![GitHub last commit](https://img.shields.io/github/last-commit/d3xt3er/FrontEnd-Recyclo)
-![GitHub top language](https://img.shields.io/github/languages/top/d3xt3er/FrontEnd-Recyclo)
-
 </div>
+
  
 
 ## Instruções 
 
 - Para instalar os pacotes tanto na pasta backend, quanto nas pastas frontend
     
-        npm install
+        yarn install
     
-- Para iniciar a aplicação backend
+- Para rodar a aplicação
     
-        npm run dev
-
-- Para gerar o Swagger
-    
-        npm run swagger
+        npm yarn start
 
 <br>
 <br>
+<div align="center">
 
 ### Local na maquina
 | Serviço | Link |
@@ -31,17 +26,18 @@
 | Swagger Docs | http://localhost:3333/docs |
 | Rotas | https://localhost:3333/api |
 
+<div>
 
 ## Integrantes
 
 <div align="center">
 
 <a href="https://github.com/Smooke09">
-  <img src="https://avatars.githubusercontent.com/u/90714214?v=4" title="Senhor Elegante" style="height:50px; border-radius:100%"/>
+  <img src="https://avatars.githubusercontent.com/u/90714214?v=4" title="Estagiario Opressor" style="height:50px; border-radius:100%"/>
 </a>
 
 <a href="https://github.com/BrenoOliveira2002">
-  <img src="https://avatars.githubusercontent.com/u/103545297?v=4" title="Shape de Grillo" style="height:50px; border-radius:100%"/>
+  <img src="https://avatars.githubusercontent.com/u/103545297?v=4" title="Hulk Magrelo" style="height:50px; border-radius:100%"/>
 </a>
 
 <a href="https://github.com/CaioCDJ">
@@ -53,9 +49,16 @@
 </a>
 
 <a href="https://github.com/RyanGualberto">
-  <img src="https://avatars.githubusercontent.com/u/88859663?v=4" style="height:50px; border-radius:100%"/>
+<img src="https://avatars.githubusercontent.com/u/88859663?v=4" title="Fake Angolano" style="height:50px; border-radius:100%"/>
 </a>
 
+<a href="https://github.com/MatheusSimoes13">
+  <img src="https://avatars.githubusercontent.com/u/61594761?v=4" title="Amante de Ruby" style="height:50px; border-radius:100%"/>
+</a>
+
+<a href="https://github.com/Doug-Vitor">
+  <img src="https://avatars.githubusercontent.com/u/86269254?v=4" title="O culpado" style="height:50px; border-radius:100%"/>
+</a>
 </div>
 
 ## FrontEnd do Projeto
