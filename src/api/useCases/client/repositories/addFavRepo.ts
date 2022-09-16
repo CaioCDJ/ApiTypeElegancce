@@ -3,6 +3,6 @@ import { Favorite } from '../../../entities/favorite';
 
 export default async function addFavRepo(data:Favorite){
 
-  async prisma.favorites.create({data});
+  await prisma.favorites.create({data});
 
 }

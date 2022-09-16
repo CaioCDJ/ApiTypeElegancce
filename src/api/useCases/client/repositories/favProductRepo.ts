@@ -7,7 +7,8 @@ export default async function favProductRepo(user_id:number){
       user_id
     },
     select:{
-      products
+      products:true
+    }
   });
 
   return list;

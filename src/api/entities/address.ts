@@ -1,6 +1,5 @@
 
 export interface Address{
-
   cep:number,
   address:string,
   district:string,

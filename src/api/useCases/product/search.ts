@@ -1,6 +1,6 @@
 import { Request,Response, NextFunction } from 'express';
 import { Error } from '../../entities/error';
-import { searchProductRepo } from './repositories/searchProductRepo';
+import searchProductRepo from './repositories/searchProductRepo';
 
 const searchProduct = 
   async(req:Request,res:Response,next:NextFunction) => {
@@ -11,9 +11,7 @@ const searchProduct =
 
     const list  = searchProductRepo(searchParam);
 
-    if(list == null){
-      next(new Error(404,"Nenhum resultado encontrado"));
-    }
+    if(Object.keys(list).length == 0 ) next(Error.notFound("Nenhum Resultado encontrado"));
     
     res.send(list);
 

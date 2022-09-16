@@ -4,12 +4,14 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const SECRET = process.env.SECRET;
+
 export async function gemToken(level:permissionsLevel, userId:number){
 
     const newToken = await sign({
         _id: userId,
         level
-    },process.env.SECRET,{
+    },SECRET,{
         expiresIn:300
     });
 
@@ -18,7 +20,7 @@ export async function gemToken(level:permissionsLevel, userId:number){
 
 export async function verifyToken(token:any){
    
-   const a = await verify(token,process.env.SECRET);
+   const a = await verify(token,SECRET);
   
    console.log(a)
    return a;

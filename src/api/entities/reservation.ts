@@ -1,4 +1,3 @@
-import { Procedure } from './Procedure'
 
 export interface Reservation{
   

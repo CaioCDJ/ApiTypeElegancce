@@ -29,6 +29,5 @@ export default async function requestsRepo(user_id:number){
         user_id
       }
     });
- 
 return results;
 }

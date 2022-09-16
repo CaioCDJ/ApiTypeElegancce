@@ -1,5 +1,6 @@
 import yup from 'yup';
 import {Response,Request,NextFunction} from 'express';
+import { Error } from '../entities/error';
 
 const bodyValidation = (schema:yup.AnyObjectSchema) =>
   async (req:Request,res:Response,next:NextFunction) =>{
@@ -13,7 +14,7 @@ const bodyValidation = (schema:yup.AnyObjectSchema) =>
     next();
 
   } catch(e:any){
-    res.send(e.message);
+    res.send(Error.notAcceptable(e.message));
   }
 
 }

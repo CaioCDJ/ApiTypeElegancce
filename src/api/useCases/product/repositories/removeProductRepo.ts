@@ -1,6 +1,6 @@
 import prisma from '../../../services/prisma';
 
-export default async function removeProductRepo(){
+export default async function removeProductRepo(id:number){
 
-  async 
+  await prisma.products.delete({ where: {id} }); 
 }

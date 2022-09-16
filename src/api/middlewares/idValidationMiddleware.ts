@@ -1,5 +1,5 @@
 import yup from 'yup';
-import idSchema from '../validations/idValidation.ts';
+import idSchema from '../validations/idValidation';
 import {Response,Request,NextFunction} from 'express';
 
 const idValidation = 

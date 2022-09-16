@@ -1,7 +1,6 @@
 import remove from './delete';
-import update from './update';
-import findAll from './searchAll';
-import findById from './searchById';
+import findAll from './findAll';
+import findById from './findById';
 
 
 export {remove,findAll,findById}

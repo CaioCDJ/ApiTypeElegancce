@@ -1,4 +1,4 @@
-import { string,object,SchemaOf, number } from "yup";
+import { string,object,SchemaOf, number, bool } from "yup";
 import { Product } from "../entities/product";
 
 export const productSchema:SchemaOf<Product> = object({
@@ -7,5 +7,8 @@ export const productSchema:SchemaOf<Product> = object({
     value:number().required().positive(),
     description:string().required(),
     qt:number().required().positive().integer(),
-    brand: string().required()   
+    brand: string().required(),
+    pricepromo:number().positive(),
+    url_image:string().url(),
+    offer:bool()   
 });

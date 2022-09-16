@@ -1,7 +1,8 @@
 import prisma from '../../../services/prisma';
 import { Products } from '../../../entities/Request';
 
-export default async function addRequestProductsRepo(request_id:number, request_products:Array<Products>){
+export default 
+  async function addRequestProductsRepo(request_id:number, request_products:Array<Products>){
  
 
   let data:Array<request_products>;
@@ -15,7 +16,6 @@ export default async function addRequestProductsRepo(request_id:number, request_
       })
   });
   
-
   await prisma.request_products.createMany({data});
 }
 

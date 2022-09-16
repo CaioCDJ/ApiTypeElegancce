@@ -4,4 +4,7 @@ export interface Product{
     description:string,
     qt:number,
     brand:string
+    url_image:string,
+    offer:boolean,
+    pricepromo:number
 }

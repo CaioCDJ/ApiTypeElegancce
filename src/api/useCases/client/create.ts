@@ -1,4 +1,4 @@
-import { Client } from  '../../entities/client.ts';
+import { Client } from  '../../entities/client';
 import { Request,Response, NextFunction } from 'express';
 import { Error } from '../../entities/error';
 import addClientRepo from './repositories/addClientRepo';
@@ -10,10 +10,12 @@ const create =
 
     const client:Client = req.body;
 
+    addClientRepo(client);
+
     res.json({"message":"Usuario criado"});
 
   } catch(e:any){
-    res.send(Error.badRequeste.message);
+    res.send(Error.badRequest(e.message));
   }
 }
 

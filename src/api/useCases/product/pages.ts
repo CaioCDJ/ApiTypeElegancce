@@ -1,7 +1,9 @@
-import {Request,Response} from 'express';
-import prisma from '../../services/prisma';
+import { NextFunction, Request,Response } from 'express';
+import { Error } from '../../entities/error';
+import pagesRepo from './repositories/pagesRepo';
 
-const getPages = async(req:Request,res:Response) => {
+const getPages =
+   async(req:Request,res:Response,next:NextFunction) => {
 
   try{
 
@@ -14,14 +16,15 @@ const getPages = async(req:Request,res:Response) => {
     else if( numPages > 1) pages = ( numPages - 1 ) + 10;
 
     else{
-     res.send("error")
-    }
-  
+      next(Error.badRequest("Erro na Paginação."));
+    }  
+
+    const list = pagesRepo(pages);
 
     res.send(list);
 
   }catch(e:any){
-    res.send(e.message);
+    next(Error.badRequest(e.message));
   }
   
 }

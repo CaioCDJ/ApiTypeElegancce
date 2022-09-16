@@ -5,7 +5,6 @@ export default async function searchProductRepo(searchParam:string){
  const list = await prisma.products.findMany({
       where:{
         name:{
-
           startsWith:searchParam
         },
         OR:{

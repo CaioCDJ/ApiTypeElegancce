@@ -11,7 +11,9 @@ const clientRequest =
 
     const list = await requestsRepo(user_id);
 
-    if(Object.key(list).length == 0 ) next(Error.notFound("Nenhum Resultado encontrado"));
+    console.log(list)
+
+    if(Object.keys(list).length == 0 ) next(Error.notFound("Nenhum Resultado encontrado"));
     
     res.send(list);  
 

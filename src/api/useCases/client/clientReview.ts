@@ -8,11 +8,13 @@ const clientRequest =
   try{
 
     const user_id = parseInt(req.params.id);
+
+    const list = reviewsRepo(user_id);
+
+    res.send(list);
     
-    res.send(reviews);
-    
-  }catch(e){
-    next(new Error(500,e.message))
+  }catch(e:any){
+    next(Error.badRequest(e.message))
   }
 
 }

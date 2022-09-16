@@ -1,4 +1,4 @@
-export interface Request{
+export interface RequestInterface{
 
   products:Array<Products>,
   date:Date,
