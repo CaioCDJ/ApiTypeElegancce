@@ -9,7 +9,7 @@ const findAll = (tbName:string) =>
     
       const all = await findAllRepo(tbName); 
      
-      if(Object.keys(all).length == 0) next(Error.notFound("Items não encontrado"));
+      if(Object.keys(all).length == 0) next(Error.notFound("Itens não foram encontrados"));
 
       res.send(all);
 

@@ -11,7 +11,7 @@ const searchByCode =
   
     const results  = findByCodeRepo(code);
     
-    if(Object.keys(results).length == 0) next(Error.notFound("Cupon não encontrado"))
+    if(Object.keys(results).length == 0) next(Error.notFound("Cupom não encontrado"))
    
     res.send(results);
  

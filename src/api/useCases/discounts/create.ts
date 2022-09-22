@@ -19,7 +19,7 @@ const create =
       }
     });
     
-    res.send("Disconto criado");
+    res.send("Cupon de Desconto criado");
   
   }catch(e:any){ next(Error.badRequest(e.message)) }
 

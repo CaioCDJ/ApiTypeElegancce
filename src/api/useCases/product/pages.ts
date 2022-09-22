@@ -19,7 +19,7 @@ const getPages =
       next(Error.badRequest("Erro na Paginação."));
     }  
 
-    const list = pagesRepo(pages);
+    const list = await pagesRepo(pages);
 
     res.send(list);
 
